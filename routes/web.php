@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,19 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    echo "hi";
+    return view('home');
 });
+Route::post('/', function (Request $request) {
+    $input = $request->input('input');
+    $method = $request->input('method');
+    $path = $request->input('path');
+    return "this is a post method $input";
+});
+// Route::get('/student', function (Request $request) {
+//     $input = $request->input('input');
+//     return "this is a post method $input";
+// });
 
+Route::get('/student/{id}/{name}', function ($id, $name) {
+    return "Hi, $id $name";
+});
