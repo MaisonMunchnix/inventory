@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $products = Product::all();
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -35,7 +36,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|string|max:250',
+            'description' => 'required|max:255',
+            'quantity' => 'required|min:1',
+        ]);
+        $product = new Product();
+
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->quantity = $request->quantity;
+
+        $product->save();
+
+        return redirect()->route('products.index')->with("success", "Product added.");
     }
 
     /**
@@ -46,7 +61,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        // $product = Product::find($product->$id);
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -57,7 +73,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -69,8 +85,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
-    }
+
+         $request->validate([
+            'name' => 'required|string|max:250',
+            'description' => 'required|max:255',
+            'quantity' => 'required|min:1',
+        ]);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->quantity = $request->quantity;
+
+        $product->save();
+        return redirect()->route('products.index')->with("success", "Product updated.");
+
+        }
 
     /**
      * Remove the specified resource from storage.
@@ -80,6 +108,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index')->with("success", "Product deleted.");
+
     }
 }
