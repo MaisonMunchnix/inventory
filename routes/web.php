@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -14,24 +16,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-Route::get('/home', function () {
-    return view('home');
-});
-Route::post('/', function (Request $request) {
-    $input = $request->input('input');
-    $method = $request->input('method');
-    $path = $request->input('path');
-    return "this is a post method $input";
-});
-// Route::get('/student', function (Request $request) {
-//     $input = $request->input('input');
-//     return "this is a post method $input";
-// });
 
-Route::get('/student/{id}/{name}', function ($id, $name) {
-    return "Hi, $id $name";
-});
+Route::resource('products', ProductController::class);
+
