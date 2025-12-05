@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -20,5 +21,13 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 
-Route::resource('products', ProductController::class);
+// Route::resource('products', ProductController::class);
 
+Route :: get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route :: post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+Route :: get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth')->group(function() {
+    Route::resource('products', ProductController::class);
+});

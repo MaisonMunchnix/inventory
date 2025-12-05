@@ -16,6 +16,8 @@
 
         <p class="lead">Manage your products easily and efficiently .</p>
         <a href="{{ route('products.create') }}" class="btn btn-success">Add New</a>
+		
+		</form>
     
 				@isset($products)
 					<table class="table table-light m-3" >
@@ -53,6 +55,9 @@
 							@endforeach
 						</tbody>
 					</table>
+					
+
+					{{ $products->links() }}
 					
 				@endisset
 		
