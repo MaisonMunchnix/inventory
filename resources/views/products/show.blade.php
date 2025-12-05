@@ -11,30 +11,24 @@
     </div>
 
     @isset($product)
-        <table class="table table-bordered">
-					<tr>
-
-						<td>ID</td>
-						<td>{{ $product->id }}</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>{{ $product->name }}</td>
-					</tr>
-					<tr>
-						<td>Description</td>
-						<td>{{ $product->description }}</td>
-					</tr>
-					<tr>
-						<td>Quantity</td>
-						<td>{{ $product->quantity }}</td>
-					</tr>
-        </table>
+	<table class="table table-bordered">
+		<tr>
+			<td>ID</td>
+			<td>{{ $product->id }}</td>
+		</tr>
+		<tr>
+			<td>Name</td>
+			<td>{{ $product->name }}</td>
+		</tr>
+		<tr>
+			<td>Description</td>
+			<td>{{ $product->description }}</td>
+		</tr>
+		<tr>
+			<td>Quantity</td>
+			<td>{{ $product->quantity }}</td>
+		</tr>
+	</table>
     @endisset
-
-
-
-
 </div>
-
 @endsection

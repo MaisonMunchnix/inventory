@@ -24,14 +24,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('products.index') }}">Products</a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('logout') }}" class="btn nav-link">Log out</a>
-            </li>
+            @auth
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}" class="btn nav-link">Log out</a>
+                </li>
+            @endauth
+            @guest
+                <li class="nav-item">
+                    <a href="{{ route('login') }}" class="btn nav-link">Login</a>
+                </li>
+            @endguest
             </ul>
         </div>
     </nav>
-    
-
 		<div class="container">
 			@yield('content')
 		</div>

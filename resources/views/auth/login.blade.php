@@ -7,12 +7,11 @@
 <div class="container mt-5">
     <div class="text-center">
         <h1 class="mb-4">User Login</h1>
-
-        @if ('errors->any')
-            <p class="text-danger"></p>            
-        @endif
     </div>
-
+    
+    @if ('errors->any')
+        <p class="text-danger">{{ $errors->first() }}</p>            
+    @endif
 
     <form action="{{ route('login.submit') }}" method="post">
 			@csrf
@@ -24,12 +23,7 @@
 					<label class="form-label">Password</label>
 					<input type="password" class="form-control" id="password" name="password">
 			</div>
-			
-		
 			<button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
-
 </div>
-
 @endsection
